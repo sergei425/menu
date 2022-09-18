@@ -1,15 +1,20 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Menu() {
+  const getLinkActive = (evt) => {
+    [...evt.currentTarget.children].map(el => el.classList.remove('menu__item-active'))
+    evt.target.classList.add('menu__item-active')
+  }
+
   return (
-    <nav className="menu">
-        <NavLink to={'/'} className={({ isActive }) => "menu__item" + (isActive ? " menu__item-active" : "")}>главная</NavLink>
+    <nav className="menu" onClick={getLinkActive}>
+        <Link className="menu__item menu__item-active" to={'/'}>главная</Link>
       
-        <NavLink to={'/drift'} className={({ isActive }) => "menu__item" + (isActive ? " menu__item-active" : "")}>дрифт-такси</NavLink>
+        <Link className="menu__item" to={'/drift'}>дрифт-такси</Link>
       
-        <NavLink to={'/timeattack'} className={({ isActive }) => "menu__item" + (isActive ? " menu__item-active" : "")}>time attack</NavLink>
+        <Link className="menu__item" to={'/timeattack'}>time attack</Link>
       
-        <NavLink className={({ isActive }) => "menu__item" + (isActive ? " menu__item-active" : "")} to={'/forza'}>forza karting</NavLink>
+        <Link className="menu__item" to={'/forza'}>forza karting</Link>
     </nav>
   );
 }
